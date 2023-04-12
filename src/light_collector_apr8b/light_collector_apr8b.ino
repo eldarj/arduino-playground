@@ -15,7 +15,6 @@ int greenSensor = 0;
 int blueSensor = 0;
 
 
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
