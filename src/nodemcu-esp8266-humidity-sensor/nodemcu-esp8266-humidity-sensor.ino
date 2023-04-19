@@ -10,11 +10,11 @@ DHT dht = DHT(DHT_PIN, DHT_TYPE);
 
 // Define WiFI
 const char* ssid = "Eldar";
-const char* password = "********";
+const char* password = "*****";
 
 // Define influx client
 #define INFLUXDB_URL "http://192.168.1.172:8086"
-#define INFLUXDB_TOKEN "gbZGwo9g6Xi3u0z-scPY4ekkhqVkvAJSJY03duYHpvhWETI8G8pgFhgX7JrcE2YnJT2IuuuBkKux0V0RFdGUig=="
+#define INFLUXDB_TOKEN "GxBXOkbFHipkCyKnLMb-Xi8yzkk69kXK_vOIbTeWzvdamYAtvE746DIvH7kX5ieCoAqUHU7kkHqfzii-pkd7lQ=="
 #define INFLUXDB_ORG "ping"
 #define INFLUXDB_BUCKET "esp8266"
 
@@ -27,24 +27,30 @@ float humidity = 0.0;
 void setup() {
   Serial.begin(115200);
 
+  Serial.println();
+  Serial.println("Setting up");
+
   // Connect to wifi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Connecting to wifi...");
+    Serial.println("Connecting to WiFi...");
   }
+
+  Serial.print("Connected to WiFi, host = ");
+  Serial.println(WiFi.localIP());
 
   // Start sensor listening
   dht.begin();
 
   // Connect to influxdb
-  if (client.validateConnection()) {
-      Serial.print("Connected to InfluxDB: ");
-      Serial.println(client.getServerUrl());
-    } else {
-      Serial.print("InfluxDB connection failed: ");
-      Serial.println(client.getLastErrorMessage());
-    }
+  while (!client.validateConnection()) {
+    Serial.print("InfluxDB connection failed: ");
+    Serial.println(client.getLastErrorMessage());
+  }
+
+  Serial.print("Connected to InfluxDB: ");
+  Serial.println(client.getServerUrl());
 }
 
 void loop() {
@@ -68,7 +74,7 @@ void loop() {
     Serial.println();
     Serial.print("InfluxDB write failed: ");
     Serial.println(client.getLastErrorMessage());
-    Serial.println();
+    Serial.println("---");
   }
 
   Serial.println();
