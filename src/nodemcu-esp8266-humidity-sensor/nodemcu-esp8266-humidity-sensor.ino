@@ -10,11 +10,11 @@ DHT dht = DHT(DHT_PIN, DHT_TYPE);
 
 // Define WiFI
 const char* ssid = "Eldar";
-const char* password = "super-secret-wifi-password";
+const char* password = "********";
 
 // Define influx client
 #define INFLUXDB_URL "http://192.168.1.172:8086"
-#define INFLUXDB_TOKEN "super-secret-token"
+#define INFLUXDB_TOKEN "gbZGwo9g6Xi3u0z-scPY4ekkhqVkvAJSJY03duYHpvhWETI8G8pgFhgX7JrcE2YnJT2IuuuBkKux0V0RFdGUig=="
 #define INFLUXDB_ORG "ping"
 #define INFLUXDB_BUCKET "esp8266"
 
@@ -72,5 +72,5 @@ void loop() {
   }
 
   Serial.println();
-  delay(1000);
+  delay(2000);
 }

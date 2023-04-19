@@ -34,7 +34,6 @@ It will connect to wifi, and send the read sensor values to
 an influxdb running locally (on my laptop) within a docker container, exposed on port 8086, within the same network.
 
 **What you'll need:**
-
 * docker
 * docker-compose
 * NodeMCU board
@@ -43,8 +42,17 @@ an influxdb running locally (on my laptop) within a docker container, exposed on
     * `DHT sensor library` lib `1.3.4` by Adafruit
     * `Adafruit Unified Sensor` lib `1.0.3` by Adafruit
 
-**TODOS**
+**How it looks:**
+![influxdb-dashboard](readme/esp8266-dht11-influxdb.png)
 
-* [ ] add influxdb steps
-* [ ] add more prerequisites to the above list
-* [ ] detailed steps for setting up everything and running it
+**TODOS**
+* [X] Connect DHT11 sensor to NodeMCU board
+* [X] Connect NodeMCU to wifi
+* [X] Read sensor values
+* [X] Send sensor values to influxdb
+* [X] Create influxdb dashboard with humidity and temperature values
+
+
+* [ ] Add guide how to run influxdb locally
+* [ ] Add rest of prerequisites to the above list
+* [ ] Detailed steps for setting up everything and running it
